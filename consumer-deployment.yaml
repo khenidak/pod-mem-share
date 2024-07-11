@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mem-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: mem-consumer
+  template:
+    metadata:
+      labels:
+        name: mem-consumer
+    spec:
+      hostIPC: true
+      containers:
+        - name: consumer
+          image: docker.io/khenidak/memconsumer
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+
