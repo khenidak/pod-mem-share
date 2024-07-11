@@ -1,0 +1,7 @@
+FROM ubuntu:jammy
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/{apt,dpkg,cache,log}/
+RUN mkdir /apps
+COPY ./out/controller /apps/
+COPY ./data.file /apps/
+WORKDIR /apps
+ENTRYPOINT ["./controller"]

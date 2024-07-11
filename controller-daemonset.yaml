@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: mem-controller
+spec:
+  selector:
+    matchLabels:
+      name: mem-controller
+  template:
+    metadata:
+      labels:
+        name: mem-controller
+    spec:
+      hostIPC: true
+      containers:
+        - name: controller
+          image: docker.io/khenidak/memctrl
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+
